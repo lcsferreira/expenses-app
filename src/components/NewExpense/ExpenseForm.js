@@ -63,12 +63,27 @@ export default function ExpenseForm() {
     // });
   };
 
+  const inputChangeHandler = (identifier, value) => {
+    if (identifier === "title") {
+      setEnteredTitle(value);
+    } else if (identifier === "amount") {
+      setEnteredAmount(value);
+    } else {
+      setEnteredDate(value);
+    }
+  };
+
   return (
     <form>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" onChange={titleChangeHandler} />
+          <input
+            type="text"
+            onChange={(event) =>
+              inputChangeHandler("title", event.target.value)
+            }
+          />
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
@@ -76,7 +91,9 @@ export default function ExpenseForm() {
             type="number"
             min="0.01"
             step="0.01"
-            onChange={amountChangeHandler}
+            onChange={(event) =>
+              inputChangeHandler("amount", event.target.value)
+            }
           />
         </div>
         <div className="new-expense__control">
@@ -85,7 +102,7 @@ export default function ExpenseForm() {
             type="date"
             min="2019-01-01"
             max="2023-12-31"
-            onChange={dateChangeHandler}
+            onChange={(event) => inputChangeHandler("date", event.target.value)}
           />
         </div>
       </div>
